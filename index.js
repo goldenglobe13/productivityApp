@@ -63,7 +63,11 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 3000;
 
 const wss = new WebSocket.Server({ port: port });
-wss.on('connection', (ws) => {
+wss.on('connection', (ws, req) => {
+  ws.id = req.headers['sec-websocket-key'];
+  console.log(ws);
+  console.log(req);
+  console.log(ws.id);
   ws.on('message', (message) => {
     console.log(`Received message => ${message}`);
   });
