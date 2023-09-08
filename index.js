@@ -6,7 +6,7 @@ dotenv.config({ path: './config.env' });
 
 const express = require('express');
 const morgan = require('morgan');
-const io = require('socket.io')();
+const WebSocket = require('ws');
 
 const seriesRouter = require('./routes/seriesRoutes');
 
@@ -68,7 +68,13 @@ io.on('connection', (socket) => {
 
 const port = process.env.PORT || 3000;
 
-io.listen(3000);
+const wss = new WebSocket.Server({ port: port });
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    console.log(`Received message => ${message}`);
+  });
+  ws.send('Hello! Message From Server!!');
+});
 
 // 1) START SERVER
 
