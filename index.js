@@ -60,12 +60,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-});
-
 const port = process.env.PORT || 3000;
 
 const wss = new WebSocket.Server({ port: port });
