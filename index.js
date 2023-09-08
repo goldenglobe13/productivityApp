@@ -72,6 +72,6 @@ io.listen(port);
 
 // 1) START SERVER
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log(`App running on port ${port}...`);
 });
