@@ -68,7 +68,7 @@ wss.on('connection', (ws, req) => {
   // console.log(ws);
   console.log(ws.id);
   ws.on('message', (message) => {
-    console.log(`Received message => ${message}`);
+    console.log(`Received message from ${ws.id} => ${message}`);
   });
   ws.send('Hello! Message From Server!!');
 });
