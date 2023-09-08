@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 dotenv.config({ path: './config.env' });
 const app = require('./api/app');
 
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-);
+// const DB = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD,
+// );
+
+const DB = `mongodb+srv://amin:DSFKEeuifg3RweVQ@natourscluster.ze8boia.mongodb.net/imdb?retryWrites=true&w=majority`;
 
 mongoose
   .connect(DB, {
