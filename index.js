@@ -1,10 +1,12 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const path = require('path');
 
 dotenv.config({ path: './config.env' });
 
 const express = require('express');
 const morgan = require('morgan');
+const io = require('socket.io')();
 
 const seriesRouter = require('./routes/seriesRoutes');
 
@@ -54,8 +56,22 @@ mongoose
     console.log('DB connection successful');
   });
 
-// 1) START SERVER
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+});
+
 const port = process.env.PORT || 3000;
+
+io.listen(port);
+
+// 1) START SERVER
+
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
