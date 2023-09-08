@@ -68,10 +68,10 @@ io.on('connection', (socket) => {
 
 const port = process.env.PORT || 3000;
 
-io.listen(port);
+io.listen(3000);
 
 // 1) START SERVER
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
