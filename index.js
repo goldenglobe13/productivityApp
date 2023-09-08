@@ -72,6 +72,6 @@ wss.on('connection', (ws) => {
 
 // 1) START SERVER
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}...`);
+// });
