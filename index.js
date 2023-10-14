@@ -6,7 +6,7 @@ dotenv.config({ path: './config.env' });
 
 const express = require('express');
 const morgan = require('morgan');
-const WebSocket = require('ws');
+// const WebSocket = require('ws');
 
 const seriesRouter = require('./routes/seriesRoutes');
 
@@ -62,19 +62,19 @@ app.get('/', (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-const wss = new WebSocket.Server({ port: port });
-wss.on('connection', (ws, req) => {
-  ws.id = req.headers['sec-websocket-key'];
-  // console.log(ws);
-  console.log(ws.id);
-  ws.on('message', (message) => {
-    console.log(`Received message from ${ws.id} => ${message}`);
-  });
-  ws.send('Hello! Message From Server!!');
-});
+// const wss = new WebSocket.Server({ port: port });
+// wss.on('connection', (ws, req) => {
+//   ws.id = req.headers['sec-websocket-key'];
+//   // console.log(ws);
+//   console.log(ws.id);
+//   ws.on('message', (message) => {
+//     console.log(`Received message from ${ws.id} => ${message}`);
+//   });
+//   ws.send('Hello! Message From Server!!');
+// });
 
 // 1) START SERVER
 
-// app.listen(port, () => {
-//   console.log(`App running on port ${port}...`);
-// });
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
