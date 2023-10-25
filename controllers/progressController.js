@@ -48,7 +48,7 @@ exports.getAllProgress = async (req, res) => {
     req.query.year = parseInt(req.query.year);
     req.query.month = parseInt(req.query.month);
     req.query.day = parseInt(req.query.day);
-    console.log(req.query);
+    // console.log(req.query);
     const features = new APIFeatures(Progress.find(), req.query)
       .filter()
       .sort()
