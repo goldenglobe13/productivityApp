@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -8,11 +9,14 @@ const express = require('express');
 const morgan = require('morgan');
 // const WebSocket = require('ws');
 // comment
-const seriesRouter = require('./routes/seriesRoutes');
+const statsRouter = require('./routes/statsRoutes');
+const progressRouter = require('./routes/progressRoutes');
+const dailyRouter = require('./routes/dailyRoutes');
 
 const app = express();
 
 // 1) MIDDLEWARES
+app.use(cors());
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -36,14 +40,16 @@ app.use((req, res, next) => {
 
 // 3) ROUTES
 
-app.use('/api/v1/series', seriesRouter);
+app.use('/api/v1/stats', statsRouter);
+app.use('/api/v1/progress', progressRouter);
+app.use('/api/v1/daily', dailyRouter);
 
 // const DB = process.env.DATABASE.replace(
 //   '<PASSWORD>',
 //   process.env.DATABASE_PASSWORD,
 // );
 
-const DB = `mongodb+srv://amin:DSFKEeuifg3RweVQ@natourscluster.ze8boia.mongodb.net/imdb?retryWrites=true&w=majority`;
+const DB = `mongodb+srv://amin:DSFKEeuifg3RweVQ@natourscluster.ze8boia.mongodb.net/stats?retryWrites=true&w=majority`;
 
 mongoose
   .connect(DB, {

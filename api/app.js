@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const seriesRouter = require('../routes/seriesRoutes');
+const statsRouter = require('./routes/statsRoutes');
+const progressRouter = require('./routes/progressRoutes');
+const dailyRouter = require('./routes/dailyRoutes');
 
 const app = express();
 
@@ -29,6 +31,13 @@ app.use((req, res, next) => {
 
 // 3) ROUTES
 
-app.use('/api/v1/series', seriesRouter);
+app.use('/api/v1/stats', statsRouter);
+app.use('/api/v1/progress', progressRouter);
+app.use('/api/v1/daily', dailyRouter);
+
+// const DB = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD,
+// );
 
 module.exports = app;

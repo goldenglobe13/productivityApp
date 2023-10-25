@@ -1,5 +1,5 @@
 const express = require('express');
-const seriesController = require('../controllers/seriesController');
+const dailyController = require('../controllers/dailyController');
 
 const router = express.Router();
 
@@ -11,10 +11,16 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(seriesController.middlewareSelect, seriesController.getAllSeries);
-router
-  .route('/whatIsYear')
-  .get(seriesController.middlewareSelect, seriesController.whatIsYear);
+  .get(
+    // statsController.middlewareSelect,
+    dailyController.getAllDailyTasks,
+  )
+  .post(dailyController.newDailyTask)
+  .patch(dailyController.updateDailyTask);
+
+// router
+//   .route('/whatIsYear')
+//   .get(statsController.middlewareSelect, statsController.whatIsYear);
 // .post(tourController.createTour);
 
 // router
